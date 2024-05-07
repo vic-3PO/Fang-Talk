@@ -14,6 +14,11 @@ const main = async () => {
 
         await db.delete(schema.courses);
         await db.delete(schema.userProgress);
+        await db.delete(schema.units)
+        await db.delete(schema.lessons)
+        await db.delete(schema.challenges)
+        await db.delete(schema.challengeOptions)
+        await db.delete(schema.challengeProgress)
 
         await db.insert(schema.courses).values([
             {
@@ -37,7 +42,69 @@ const main = async () => {
                 title: "Japonês",
                 imageSrc:"/jp.svg"
             }
-        ])
+        ]);
+
+        await db.insert(schema.units).values([
+            {
+                id:1,
+                courseId:4,
+                title:"Unidade 1",
+                description: "Aprenda o básico de Coreano",
+                order: 1,
+            }
+        ]);
+
+        await db.insert(schema.lessons).values([
+            {
+                id:1,
+                unitId:1,
+                order:1,
+                title: "substantivos"
+            },
+            {
+                id:2,
+                unitId:1,
+                order:2,
+                title: "verbos"
+            }
+        ]);
+
+        await db.insert(schema.challenges).values([
+            {
+                id: 1,
+                lessonId: 1,
+                type: "SELECT",
+                order: 1,
+                question:'Qual das opções significa "o homem"?',
+            },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
+            {
+                id: 1,
+                challengeId: 1,
+                imageSrc: "/man.svg",
+                correct: true,
+                text: "그 남자",
+                audioSrc: "/kr_man.mp3"
+            },
+            {
+                id: 2,
+                challengeId: 1,
+                imageSrc: "/woman.svg",
+                correct: false,
+                text: "여자",
+                audioSrc: "/kr_woman.mp3"
+            },
+            {
+                id: 3,
+                challengeId: 1,
+                imageSrc: "/robot.svg",
+                correct: false,
+                text: "로봇",
+                audioSrc: "/kr_robot.mp3"
+            }
+        ]);
 
         console.log("BD limpo")
     } catch(error) {
