@@ -11,6 +11,7 @@ type Props = {
     active?: boolean
 }
 
+
 export const Card = ({title,id,imageSrc,onClick,disabled,active}: Props) => {
     return(
         <div 
