@@ -3,7 +3,7 @@ import db from "@/db/drizzle";
 import { auth } from "@clerk/nextjs";
 
 import { eq } from "drizzle-orm";
-import { challenges, courses, units, userProgress } from "./schema";
+import { challengeProgress, challenges, courses, units, userProgress } from "./schema";
 
 export const getUserProgress = cache(async () => {
   const {userId} = await auth();
@@ -23,6 +23,7 @@ export const getUserProgress = cache(async () => {
 });
 
 export const getUnits = cache(async () => {
+  const { userId } = await auth();
   const userProgress = await getUserProgress();
   
   if(!userProgress?.activeCourseId){
@@ -36,7 +37,9 @@ export const getUnits = cache(async () => {
         with: {
           challenges:{
             with:{
-              challengeProgress: true,
+              challengeProgress: {
+                where: eq(challengeProgress.userid, userId),
+              },
             },
           },
         },
