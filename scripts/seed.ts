@@ -66,6 +66,12 @@ const main = async () => {
                 unitId:1,
                 order:2,
                 title: "verbos"
+            },
+            {
+                id:3,
+                unitId:1,
+                order:3,
+                title: "pronomes"
             }
         ]);
 
