@@ -74,6 +74,7 @@ const main = async () => {
                 title: "pronomes"
             }
         ]);
+        
 
         await db.insert(schema.challenges).values([
             {
