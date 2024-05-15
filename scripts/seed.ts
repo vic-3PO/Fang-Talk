@@ -53,8 +53,6 @@ const main = async () => {
                 order: 1,
             }
         ]);
-        
-
 
         await db.insert(schema.lessons).values([
             {
