@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
   publicRoutes: ["/"],
-  clockSkewInMs: 20000,
+  clockSkewInMs: 100000,
 });
 
 export const config = {
