@@ -161,6 +161,7 @@ export const  getLesson = cache(async (id?: number) =>{
   return {...data, challenges: normalizeChallenges};
 });
 
+
 export const  getLessonPercentage = cache(async () =>{
   const CourseProgress = await getCourseProgress();
 
