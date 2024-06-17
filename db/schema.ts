@@ -28,6 +28,7 @@ export const unitsRelations = relations(units,({many,one}) => ({
   lessons: many(lessons), 
 }));
 
+
 export const lessons = pgTable("lessons",{
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
